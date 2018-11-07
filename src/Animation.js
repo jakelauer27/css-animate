@@ -67,24 +67,24 @@ class Animation extends Component {
 
   validateTransformInput(target, inputValue) {
     let args = inputValue.split(' ');
-    args.forEach(arg => {
-      let type = arg.split('(');
+    for (let i = 0; i < args.length; i++) {
+      let type = args[i].split('(');
       if (type[0][type[0].length - 1] === 'Y' || type[0][type[0].length - 1] === 'X') {
         type[0] = type[0].slice(0, -1);
       }
       if (!transformValidator[type[0]]) {
         target.classList.add('red');
         document.querySelector('.play-btn').setAttribute('disabled', true);
-        return
+        break;
       }
-      if (!transformValidator[type[0]].test(arg)) {
+      if (!transformValidator[type[0]].test(args[i])) {
         target.classList.add('red');
         document.querySelector('.play-btn').setAttribute('disabled', true);
-      } else {
+        break;
+      }
         target.classList.remove('red');
         document.querySelector('.play-btn').removeAttribute('disabled');
-      }
-    });
+    }
   }
   
 
