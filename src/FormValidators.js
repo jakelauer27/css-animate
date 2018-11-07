@@ -22,7 +22,9 @@ const transformValidator = {
   translate: RegExp('translate(X|Y)?[(](\-)?([0-9]|(\-)?[1-9][0-9]|(\-)?[1-9][0-9][0-9])(%|px)(,((\-)?[0-9]|(\-)?[1-9]([0-9]|(\-)?[1-9][0-9][0-9])(%|px)))?[)]'),
   skew: RegExp('skew(X|Y)?[(]((\-)?[0-9]|(\-)?[1-9][0-9]|(\-)?[1-9][0-9][0-9]|(\-)?[1-9][0-9][0-9][0-9])deg(,((\-)?[0-9]|(\-)?[1-9][0-9]|(\-)?[1-9][0-9][0-9]|(\-)?[1-9][0-9][0-9][0-9])deg)?[)]'),
   scale: RegExp('scale(X|Y)?[(]((\-)?(\.)?[0-9]|(\-)?[1-9](\.)?[0-9]|(\-)?[1-9](\.)?[0-9](\.)?[0-9])(%)?(,((\-)?(\.)?[0-9]|(\-)?[1-9](\.)?[0-9]|(\-)?[1-9](\.)?[0-9](\.)?[0-9])(%)?)?[)]'),
-  other: RegExp('(?<!.)none(?!.)|(?<!.)initial(?!.)|(?<!.)inherit(?!.)'),
+  none: RegExp('(?<!.)none(?!.)'),
+  initial: RegExp('(?<!.)initial(?!.)'),
+  inherit: RegExp('(?<!.)inherit(?!.)'),
 }
 
 export {animationPropValidator, keyframeStageValidator, keyframeValueValidator, transformValidator} ;
