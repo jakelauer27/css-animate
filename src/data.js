@@ -90,7 +90,7 @@ const animationsData = {
           'properties': [
             {
               'name': 'opacity',
-              'value': '0'
+              'value': '0.0'
             }
           ]
         },
@@ -100,7 +100,7 @@ const animationsData = {
           'properties': [
             {
               'name': 'opacity',
-              'value': '1'
+              'value': '1.0'
             }
           ]
         },
@@ -339,7 +339,7 @@ const animationsData = {
           'properties': [
             {
               'name': 'opacity',
-              'value': '0'
+              'value': '0.0'
             },
             {
               'name': 'transform',
@@ -367,7 +367,7 @@ const animationsData = {
           'properties': [
             {
               'name': 'opacity',
-              'value': '1'
+              'value': '1.0'
             },
             {
               'name': 'transform',
@@ -381,7 +381,7 @@ const animationsData = {
           'properties': [
             {
               'name': 'opacity',
-              'value': '1'
+              'value': '1.0'
             },
             {
               'name': 'transform',

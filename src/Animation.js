@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './styles/app.scss';
-import { animationPropValidator, 
-  keyframeStageValidator} from './FormValidators';
+import {animationPropValidator, 
+  keyframeStageValidator, 
+  keyframeValueValidator, 
+  transformValidator} from './FormValidators';
 
 
 const aniProps = ['duration', 'timing-function', 'delay', 'iteration-count', 'direction', 'fill-mode']
@@ -32,10 +34,11 @@ class Animation extends Component {
   validateAnimationProp(target, inputValue) {
     if (!animationPropValidator[target.classList[1]].test(inputValue)) {
       target.classList.add('red');
-      document.querySelector('.play-btn').setAttribute('disabled', 'disabled');
-    } 
-    target.classList.remove('red');
-    document.querySelector('.play-btn').removeAttribute('disabled');
+      document.querySelector('.play-btn').setAttribute('disabled', true);
+    } else {
+      target.classList.remove('red');
+      document.querySelector('.play-btn').removeAttribute('disabled');
+    }
   }
 
   validateKeyframeStage(target, inputValue) {
@@ -48,14 +51,41 @@ class Animation extends Component {
     }
   }
 
-  // validateKeyframeValue(target, inputValue) {
-  //   if (!keyframeValueValidator[target.classList[1]].test(inputValue)) {
-  //     target.classList.add('red');
-  //     document.querySelector('.play-btn').setAttribute('disabled', true);
-  //   } 
-  //   target.classList.remove('red');
-  //   document.querySelector('.play-btn').removeAttribute('disabled');
-  // }
+  validateKeyframeValue(target, inputValue) {
+    if (target.classList[1] === 'transform') {
+      this.validateTransformInput(target, inputValue);
+      return;
+    }
+    if (!keyframeValueValidator[target.classList[1]].test(inputValue)) {
+      target.classList.add('red');
+      document.querySelector('.play-btn').setAttribute('disabled', true);
+    } else {
+      target.classList.remove('red');
+      document.querySelector('.play-btn').removeAttribute('disabled');
+    }
+  }
+
+  validateTransformInput(target, inputValue) {
+    let args = inputValue.split(' ');
+    args.forEach(arg => {
+      let type = arg.split('(');
+      if (type[0][type[0].length - 1] === 'Y' || type[0][type[0].length - 1] === 'X') {
+        type[0] = type[0].slice(0, -1);
+      }
+      if (!transformValidator[type[0]]) {
+        target.classList.add('red');
+        document.querySelector('.play-btn').setAttribute('disabled', true);
+        return
+      }
+      if (!transformValidator[type[0]].test(arg)) {
+        target.classList.add('red');
+        document.querySelector('.play-btn').setAttribute('disabled', true);
+      } else {
+        target.classList.remove('red');
+        document.querySelector('.play-btn').removeAttribute('disabled');
+      }
+    });
+  }
   
 
   saveForm(e) {

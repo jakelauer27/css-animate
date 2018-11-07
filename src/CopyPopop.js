@@ -23,7 +23,6 @@ class CopyPopup extends Component {
         <textarea className='animation-text' readOnly value={
             `animation:${
                 keys.map((key, i) => {
-                  console.log(props[key])
                   if (i === keys.length -1) {
                     return ';'
                   } 
