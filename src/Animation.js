@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './styles/app.scss';
-import { animationPropValidator, keyframeStageValidator, keyframeValueValidator } from './FormValidators';
+import { animationPropValidator, 
+  keyframeStageValidator, 
+  keyframeValueValidator,
+  transformValidator } from './FormValidators';
 
 
 const aniProps = ['duration', 'timing-function', 'delay', 'iteration-count', 'direction', 'fill-mode']
@@ -31,11 +34,10 @@ class Animation extends Component {
   validateAnimationProp(target, inputValue) {
     if (!animationPropValidator[target.classList[1]].test(inputValue)) {
       target.classList.add('red');
-      document.querySelector('.play-btn').setAttribute('disabled', true);
-    } else {
-      target.classList.remove('red');
-      document.querySelector('.play-btn').removeAttribute('disabled');
-    }
+      document.querySelector('.play-btn').setAttribute('disabled', 'disabled');
+    } 
+    target.classList.remove('red');
+    document.querySelector('.play-btn').removeAttribute('disabled');
   }
 
   validateKeyframeStage(target, inputValue) {
@@ -48,8 +50,18 @@ class Animation extends Component {
     }
   }
 
+  validateKeyframeValue(target, inputValue) {
+    if (!keyframeValueValidator[target.classList[1]].test(inputValue)) {
+      target.classList.add('red');
+      document.querySelector('.play-btn').setAttribute('disabled', true);
+    } 
+    target.classList.remove('red');
+    document.querySelector('.play-btn').removeAttribute('disabled');
+  }
+  
+
   saveForm(e) {
-    this.validateAnimationProp(e.target, e.target.value);
+    this.validateAnimationProp(e.target, e.target.value)
     document.querySelector('.stop-btn').click();
     let newAnimation = JSON.parse(JSON.stringify(this.state.animation));
     newAnimation.properties[e.target.classList[1]] = e.target.value;
@@ -78,6 +90,7 @@ class Animation extends Component {
   }
 
   saveKeyframesProps(e) {
+    this.validateKeyframeValue(e.target, e.target.value)
     document.querySelector('.stop-btn').click();
     let newAnimation = Object.assign(this.state.animation);
     let stageLabel = e.target.parentElement.parentElement.childNodes[0].classList[1];
