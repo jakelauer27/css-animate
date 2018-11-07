@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import './styles/app.scss';
 import { animationPropValidator, 
-  keyframeStageValidator, 
-  keyframeValueValidator,
-  transformValidator } from './FormValidators';
+  keyframeStageValidator} from './FormValidators';
 
 
 const aniProps = ['duration', 'timing-function', 'delay', 'iteration-count', 'direction', 'fill-mode']
@@ -50,14 +48,14 @@ class Animation extends Component {
     }
   }
 
-  validateKeyframeValue(target, inputValue) {
-    if (!keyframeValueValidator[target.classList[1]].test(inputValue)) {
-      target.classList.add('red');
-      document.querySelector('.play-btn').setAttribute('disabled', true);
-    } 
-    target.classList.remove('red');
-    document.querySelector('.play-btn').removeAttribute('disabled');
-  }
+  // validateKeyframeValue(target, inputValue) {
+  //   if (!keyframeValueValidator[target.classList[1]].test(inputValue)) {
+  //     target.classList.add('red');
+  //     document.querySelector('.play-btn').setAttribute('disabled', true);
+  //   } 
+  //   target.classList.remove('red');
+  //   document.querySelector('.play-btn').removeAttribute('disabled');
+  // }
   
 
   saveForm(e) {
