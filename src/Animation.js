@@ -93,7 +93,6 @@ class Animation extends Component {
 
   validateColorInput(target, inputValue) {
     if (inputValue.slice(0, 3) === 'rgb') {
-      console.log(colorValidator.rgb.test(inputValue))
       if (!colorValidator.rgb.test(inputValue)) {
         target.classList.add('red');
         document.querySelector('.play-btn').setAttribute('disabled', true);

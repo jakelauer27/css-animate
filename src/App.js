@@ -49,6 +49,7 @@ class App extends Component {
       animation: JSON.parse(JSON.stringify(this.state.original))
     })
     this.resetCSSKeyframesRule()
+    this.resetInputValidation()
   }
 
   resetCSSKeyframesRule() {
@@ -64,6 +65,12 @@ class App extends Component {
     sheet.insertRule(formattedRule, sheet.cssRules.length)
   }
 
+  resetInputValidation() {
+    document.querySelectorAll('input').forEach( input => {
+      input.classList.remove('red');
+    });
+    document.querySelector('.play-btn').removeAttribute('disabled');
+  }
 
   ////////INSERTING KEYFRAMES TO CSS
 
