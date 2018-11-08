@@ -3,8 +3,8 @@ import './styles/app.scss';
 import {animationPropValidator, 
   keyframeStageValidator, 
   keyframeValueValidator, 
-  transformValidator} from './FormValidators';
-
+  transformValidator,
+  colorValidator} from './FormValidators';
 
 const aniProps = ['duration', 'timing-function', 'delay', 'iteration-count', 'direction', 'fill-mode']
 
@@ -56,6 +56,10 @@ class Animation extends Component {
       this.validateTransformInput(target, inputValue);
       return;
     }
+    if (target.classList[1] === 'background-color') {
+      this.validateColorInput(target, inputValue);
+      return;
+    }
     if (!keyframeValueValidator[target.classList[1]].test(inputValue)) {
       target.classList.add('red');
       document.querySelector('.play-btn').setAttribute('disabled', true);
@@ -86,7 +90,39 @@ class Animation extends Component {
         document.querySelector('.play-btn').removeAttribute('disabled');
     }
   }
-  
+
+  validateColorInput(target, inputValue) {
+    if (inputValue.slice(0, 3) === 'rgb') {
+      console.log(colorValidator.rgb.test(inputValue))
+      if (!colorValidator.rgb.test(inputValue)) {
+        target.classList.add('red');
+        document.querySelector('.play-btn').setAttribute('disabled', true);
+        return
+      } else {
+        target.classList.remove('red');
+        document.querySelector('.play-btn').removeAttribute('disabled');
+        return
+      }
+    }
+    if (inputValue[0] === '#') {
+      if (!colorValidator['#'].test(inputValue)) {
+        target.classList.add('red');
+        document.querySelector('.play-btn').setAttribute('disabled', true);
+        return
+      } else {
+        target.classList.remove('red');
+        document.querySelector('.play-btn').removeAttribute('disabled');
+        return
+      }
+    }
+    if (!colorValidator.color.test(inputValue)) {
+      target.classList.add('red');
+      document.querySelector('.play-btn').setAttribute('disabled', true);
+      return
+    }
+    target.classList.remove('red');
+    document.querySelector('.play-btn').removeAttribute('disabled');
+  }
 
   saveForm(e) {
     this.validateAnimationProp(e.target, e.target.value)

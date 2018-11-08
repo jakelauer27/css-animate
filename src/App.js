@@ -15,7 +15,7 @@ class App extends Component {
       animations:  JSON.parse(JSON.stringify(animationsData)),
       animation:  JSON.parse(JSON.stringify(animationsData)).slideInX,
       original:  JSON.parse(JSON.stringify(animationsData)).slideInX,
-      infoPopup: false
+      infoPopup: false 
     }
   }
 
@@ -147,23 +147,6 @@ class App extends Component {
   }
 
   ///////////////////////////////////////
-
-  reset = () => {
-    this.setState({
-      original: JSON.parse(JSON.stringify(this.state.original)),
-      animation: this.state.original
-    })
-  }
-
-  resetRule() {
-    let name = this.state.animation.properties.name  
-    let ruleKeys = Object.keys(sheet.cssRules)
-    let keyframeToDeleteIndex = ruleKeys.find(rule => {
-      return sheet.cssRules[rule].name === name;
-    })
-    sheet.deleteRule(keyframeToDeleteIndex)
-    sheet.insertRule(this.state.animation.keyframes, sheet.cssRules.length)
-  }
 
   render() {
     return (
