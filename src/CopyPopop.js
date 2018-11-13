@@ -37,20 +37,22 @@ animation-fill-mode: ${props['fill-mode']};`
   }
 
   getKeyframeStages(keyframe) {
-    var obj = keyframe.sections.map( (section, i) => {
+   var obj = keyframe.sections.map( (section, i) => {
       return (
   `${section.label} {
     ${
       section.properties.map( (prop) => {
         return (
-          `${prop.name}: ${prop.value};`                
+          `${prop.name}: ${prop.value};
+    `                
           )
-        })
+        }).join('')
       }
   }
   `
       )
-    }) 
+    })
+    console.log(obj.join(',')) 
     return obj.join('')
   }
 
