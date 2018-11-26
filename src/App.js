@@ -156,6 +156,7 @@ class App extends Component {
   ///////////////////////////////////////
 
   render() {
+    const { animation, infoPopup } = this.state;
     return (
       <div className="App">
         <header>
@@ -179,16 +180,16 @@ class App extends Component {
               }
             </ul>
           </div>
-          <InfoPopup display={this.state.infoPopup}
+          <InfoPopup display={infoPopup}
             toggleOff={this.toggleInfoPopup}/>
         </header>
         <main>
-          <Editor animation={this.state.animation}
+          <Editor animation={animation}
             updateKeyframes={this.updateKeyframesProps}
             updateKeyframesStages={this.updateKeyframesStages}
             updateAnimationProperties={this.updateAnimationProperties}
             reset={this.reset}/>
-          <Viewer animation={this.state.animation.properties}/>
+          <Viewer animation={animation.properties}/>
         </main>
       </div>
     );

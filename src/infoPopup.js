@@ -31,7 +31,8 @@ class InfoPopup extends Component {
   }
   
   render() {
-    if (!this.props.display) {
+    const { display, toggleOff } = this.props;
+    if (!display) {
       return <div></div>
     }
     return (
@@ -64,8 +65,8 @@ class InfoPopup extends Component {
           }
         <button className='close-info-popup-btn' 
           onClick={e => {
-            this.renderSection('howTo', e)
-            this.props.toggleOff(false);
+            this.renderSection('howTo', e);
+            toggleOff(false);
           }}>Go!</button>
         </div>
       </div>

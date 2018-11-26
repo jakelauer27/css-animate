@@ -40,17 +40,18 @@ class Viewer extends Component {
   }
 
   render() {
+    const { animation, play, items } = this.state;
     return (
       <div className='viewer-component'>
       <h2 className='current-animation-label'>*{this.props.animation.name}*</h2>
       <div className='viewer-container'>
         <div className='viewer'>
           {
-            this.state.items.map((item, i) => {
+            items.map((item, i) => {
               return (
                 <div className={`square square-${i}`} 
                      key={i}
-                     style={this.state.animation}
+                     style={animation}
                      onAnimationEnd={() => this.resetAnimation(1000)}>
                     <h4 className='main-title'>ani<span>Mate</span></h4>
                 </div>
@@ -62,10 +63,10 @@ class Viewer extends Component {
       <div className='editor-bottom-btns-container'>
         <button className={`lower-btn play-btn`} 
           onClick={() => this.playAnimation()}
-          disabled={!this.state.play}>play</button>
+          disabled={!play}>play</button>
         <button className={`lower-btn stop-btn`} 
           onClick={() => this.resetAnimation(0)}
-          disabled={this.state.play}>stop</button>
+          disabled={play}>stop</button>
       </div>
     </div>
     )

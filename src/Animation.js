@@ -126,7 +126,7 @@ class Animation extends Component {
   saveForm(e) {
     this.validateAnimationProp(e.target, e.target.value)
     document.querySelector('.stop-btn').click();
-    let newAnimation = JSON.parse(JSON.stringify(this.state.animation));
+    let newAnimation = {...this.state.animation};
     newAnimation.properties[e.target.classList[1]] = e.target.value;
     this.props.updateAnimationProperties(newAnimation);
     this.setState({
@@ -137,7 +137,7 @@ class Animation extends Component {
   saveKeyframesStages(e) {
     this.validateKeyframeStage(e.target, e.target.value);
     document.querySelector('.stop-btn').click();
-    let newAnimation = JSON.parse(JSON.stringify(this.state.animation));
+    let newAnimation = {...this.state.animation};
     let stageLabel = e.target.classList[1];
     let stageIndex = '';
     newAnimation.keyframes.sections.forEach( (stage, i) => {
@@ -178,20 +178,21 @@ class Animation extends Component {
   }
 
   render() {
-    if (!this.state.animation) {
+    const { animation, squares } = this.state;
+    if (!animation) {
       return <div></div>
     }
     if (this.props.animation) {
       return (
         <div className='animation-container'>
           {
-            this.state.squares.map( (square, i) => {
+            squares.map( (square, i) => {
               return (
                 <div className='class-container' key={i}>
                   <p className='class-selector'>.square-{square} <span>{'{'}</span></p>
                   <div className='props-container' key={i}>
                     <p className='ani-prop name'>name<span>:</span></p>
-                    <p className='prop-input name' id='name'>{this.state.animation.properties.name}</p>
+                    <p className='prop-input name' id='name'>{animation.properties.name}</p>
                   </div>
                   {
                     aniProps.map( (prop, i) => {
@@ -200,7 +201,7 @@ class Animation extends Component {
                           <p className={`ani-prop ${prop}`}>{prop}<span>:</span></p>
                           <input className={`prop-input ${prop}`} 
                             type='text' 
-                            value={this.state.animation.properties[prop]}
+                            value={animation.properties[prop]}
                             onChange={e => this.saveForm(e)}></input>
                         </div>
                       )
@@ -217,9 +218,9 @@ class Animation extends Component {
     return (
       <div className='keyframes-container'>
         <div className='keyframe'>
-          <p className='keyframes-name'><span>@keyframes </span>{this.state.animation.keyframes.name} <span> {'{'}</span></p>
+          <p className='keyframes-name'><span>@keyframes </span>{animation.keyframes.name} <span> {'{'}</span></p>
           {
-            this.state.animation.keyframes.sections.map( (section, i) => {
+            animation.keyframes.sections.map( (section, i) => {
               return (
                 <div className='keyframes-section' key={i}>
                   <input className={`keyframes-label ${section.name}`} 

@@ -55,6 +55,8 @@ class Editor extends Component {
   }
   
   render() {
+    const { reset, updateKeyframes, updateKeyframesStages, updateAnimationProperties} = this.props;
+    const { keyframes, animation, animationEx, popup } = this.state;
     if (!this.state.animationEx) {
       return <div></div>
     }
@@ -62,31 +64,31 @@ class Editor extends Component {
       <div className='editor-component'>
         <div className='editor-container'>
           <div className='editor-options'>
-            <button className={`animation-btn ${this.state.animation}`}
+            <button className={`animation-btn ${animation}`}
               onClick={() => this.selectKeyframes(false)}>
               animation
             </button>
-            <button className={`keyframes-btn ${this.state.keyframes}`}
+            <button className={`keyframes-btn ${keyframes}`}
               onClick={() => this.selectKeyframes(true)}>
               keyframes
             </button>
           </div>
           <div className='editor'>
-            <Animation animation={this.state.animation} 
-              animationEx={this.state.animationEx}
-              updateKeyframes={(stageIndex, propIndex, value, newAnimation) => this.props.updateKeyframes(stageIndex, propIndex, value, newAnimation)}
-              updateKeyframesStages={(stageIndex, value, newAnimation) => this.props.updateKeyframesStages(stageIndex, value, newAnimation)}
-              updateAnimationProperties={(newAnimation) => this.props.updateAnimationProperties(newAnimation)}/>
+            <Animation animation={animation} 
+              animationEx={animationEx}
+              updateKeyframes={(stageIndex, propIndex, value, newAnimation) => updateKeyframes(stageIndex, propIndex, value, newAnimation)}
+              updateKeyframesStages={(stageIndex, value, newAnimation) => updateKeyframesStages(stageIndex, value, newAnimation)}
+              updateAnimationProperties={(newAnimation) => updateAnimationProperties(newAnimation)}/>
           </div>
         </div>
         <div className='editor-bottom-btns-container'>
-          <CopyPopup animation={this.state.animationEx}
-              active={this.state.popup}
+          <CopyPopup animation={animationEx}
+              active={popup}
               closePopup={this.closePopup}/>
           <button className={`lower-btn copy-btn`} onClick={() => this.renderPopup()}>
             copy code
           </button>
-          <button className={`lower-btn reset-btn`} onClick={() => this.props.reset()}>
+          <button className={`lower-btn reset-btn`} onClick={() => reset()}>
             reset
           </button>
         </div>

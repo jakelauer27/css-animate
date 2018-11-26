@@ -52,7 +52,6 @@ animation-fill-mode: ${props['fill-mode']};`
   `
       )
     })
-    console.log(obj.join(',')) 
     return obj.join('')
   }
 
@@ -69,7 +68,8 @@ animation-fill-mode: ${props['fill-mode']};`
   }
 
   render() {
-    if (!this.props.active) {
+    const { active, closePopup } = this.props;
+    if (!active) {
       return <div></div>
     }
     return (
@@ -88,7 +88,7 @@ animation-fill-mode: ${props['fill-mode']};`
         } 
         <button className='copy-code-btn copy-animation-btn' onClick={this.copySelection}>copy</button>
       </div>
-      <button className='close-popup-btn' onClick={() => this.props.closePopup()}><i className="fas fa-times"></i></button>
+      <button className='close-popup-btn' onClick={() => closePopup()}><i className="fas fa-times"></i></button>
     </div>
     )
   }
