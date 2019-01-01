@@ -42,5 +42,5 @@ Additional enhancements will include:
 
 ![Instructions](instructions.png)
 ![Copy-Option](copy_paste.png)
-![Copy-Option](keyframes.png)
+
 
