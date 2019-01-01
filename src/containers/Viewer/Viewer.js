@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import animationsData from '../../utils/data'
 import { loadAnimation } from '../../actions/actions'
 import * as CSSInsertion from '../../utils/keyframesInsertion'
+import { PropTypes } from 'prop-types'
 
 const animationKeys = Object.keys(animationsData);
 
@@ -38,12 +39,12 @@ export class Viewer extends Component {
   }
 
   resetAnimation(waitTime) {
-    setTimeout( () => {
+    setTimeout( 
       this.setState({
         animation: {},
         play: true
       })
-    }, waitTime)
+    , waitTime)
   }
 
   render() {
@@ -83,5 +84,11 @@ export const mapStateToProps = (state) => ({
 export const mapDispatchToProps = (dispatch) => ({
   loadNewAnimation: (animation) => dispatch(loadAnimation(animation))
 })
+
+Viewer.propTypes = {
+  animation: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+  loadNewAnimation: PropTypes.func.isRequired,
+  currentAnimation: PropTypes.string.isRequired
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Viewer)
