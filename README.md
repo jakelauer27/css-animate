@@ -21,13 +21,12 @@ CSS animations are an incredible way to give sites a very polished and professio
 
 css-animate.com
 
-
 ### Primary Technologies Used
 
 - ReactJS
 - Redux
 - React-Router
-- Jest/Enzyme
+- Jest/Enzyme (100% test coverage)
 - JSX
 - Sass
 
