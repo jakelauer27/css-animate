@@ -4,6 +4,10 @@ A site for learning, and implementing CSS Animations. Open a predesigned animati
 
 ![CSS-aniMate](main_page.png)
 
+### See it Live! 
+
+[css-animate.com](http://css-animate.com)
+
 ### Set Up
 
 Clone this repo. 
@@ -18,11 +22,7 @@ run `mpn test -- --coverage` in your terminal to see test coverage
 
 ### Background / About
 
-CSS animations are an incredible way to give sites a very polished and professional look. Unfortunately many people don't realize just how easy they are to implement. I created CSS Ani-mate to help guide those looking to learn how to use CSS Animations. The app not only provides instructions and guides for how to use keyframes and animations, but also a playground to adjust prebuilt animations and easily copy the code for personal projects.  
-
-### See it Live! 
-
-css-animate.com
+CSS animations are an incredible way to give sites a very polished and professional look. Unfortunately many people don't realize just how easy they are to implement. I created CSS Ani-mate to help guide those looking to learn how to use CSS Animations. The app not only provides instructions and guides for how to use keyframes and animations, but also a playground to adjust prebuilt animations and easily copy the code for personal projects. Built with react/redux. 100% tested with jest/enzyme.
 
 ### Primary Technologies Used
 
